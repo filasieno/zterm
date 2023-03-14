@@ -43,10 +43,10 @@ Cons
     E -> C        | IdSet E -> C            | parent const of an entity
 
 Core EAV:
-    E -> AV       | IdMap E -> IdMap A -> IdSet V | given an entity, return all (attribute, value) pairs 
-    V -> AE       | IdMap V -> IdMap A -> IdSet E | given a value, return all (attribute, entity) pairs
-    A -> EV       | IdMap A -> IdMap E -> IdSet V | given an attribute, return all (entity, value) pairs
-    A -> VA       | IdMap A -> IdMap V -> IdSet A | given an attribute, return all (entity, value) pairs
+    E:RowID -> A:RowId V:RowId       | HashMap entityId -> ArrayList(struct(a: AttrId, v: ValueId)) | given an entity, return all (attribute, value) pairs 
+    V -> AE       | Btree V -> (A, E) | given a value, return all (attribute, entity) pairs
+    A -> EV       | Btree A -> (E, V) | given an attribute, return all (entity, value) pairs
+    A -> VA       | Btree A -> (V, A) | given an attribute, return all (entity, value) pairs
 
 Core EiV:
     E -> iV       | IdSet E  -> Vec V  | given an entity, return all indexed values
